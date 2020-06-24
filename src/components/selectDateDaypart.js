@@ -18,11 +18,11 @@ const styles = (theme) => {
       padding: theme.spacing.unit * 3,
       height: "100%",
       maxWidth: 450,
-      margin: " 0 auto",
+      margin: " 10 auto",
     },
     icon: {
-      height: 28,
-      width: 28,
+      height: 20,
+      width: 20,
       fill: theme.palette.grey[500],
     },
   };

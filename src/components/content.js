@@ -16,14 +16,12 @@ const style = (theme) => ({
       `0px 16px 26px -10px ${theme.palette.primary.main}99`,
       theme.shadows[15],
     ],
-    width: "60%",
   },
   navigation: {
     width: 110,
     fontSize: 12,
     [theme.breakpoints.down("xs")]: {
       fontSize: 10,
-      width: 90,
     },
   },
   prevBtn: {
