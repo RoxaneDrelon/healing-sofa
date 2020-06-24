@@ -1,13 +1,19 @@
+// App.js
 import React from "react";
-import "./App.css";
+import { useAlert } from "react-alert";
 
-function App() {
+const App = () => {
+  const alert = useAlert();
+
   return (
-    <div className="App">
-      <p>Healing</p>
-      <p>Sofa</p>
-    </div>
+    <button
+      onClick={() => {
+        alert.show("Oh look, an alert!");
+      }}
+    >
+      Show Alert
+    </button>
   );
-}
+};
 
 export default App;
