@@ -18,12 +18,22 @@ const styles = (theme) => {
       padding: theme.spacing.unit * 3,
       height: "100%",
       maxWidth: 450,
-      margin: " 10 auto",
+      margin: "auto",
+      marginTop: "10",
     },
     icon: {
       height: 20,
       width: 20,
       fill: theme.palette.grey[500],
+    },
+    picker: {
+      margin: 10,
+    },
+    FormControlLabel: {
+      margin: 2,
+    },
+    RadioGroup: {
+      flexWrap: "nowrap",
     },
   };
 };
@@ -53,16 +63,20 @@ function SelectDateDaypart({ classes }) {
           name="daypart"
           value={selectedDaypart}
           onChange={handleDaypartChange}
+          className={classes.RadioGroup}
           row
+          xs={12}
         >
           {dayparts.map((part) => (
             <FormControlLabel
+              className={classes.FormControlLabel}
               key={part}
               value={part}
               control={<Radio color="primary" />}
               label={part}
               labelPlacement="bottom"
               checked={selectedDaypart === part}
+              disableGutters
             />
           ))}
         </RadioGroup>

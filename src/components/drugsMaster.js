@@ -74,7 +74,7 @@ const DrugsMaster = ({ classes }) => {
       alignItems="center"
       style={{ height: "100%" }}
     >
-      <Grid item xs={8}>
+      <Grid item xs={10}>
         <Typography variant="h4" color="primary" style={{ padding: "0px 8px" }}>
           Drug's name ?
         </Typography>
