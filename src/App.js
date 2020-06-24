@@ -1,11 +1,13 @@
 import React from "react";
 import "./App.css";
+import Content from "./components/content";
 
 function App() {
   return (
     <div className="App">
-      <p>Healing</p>
-      <p>Sofa</p>
+      <div className="wizard">
+        <Content />
+      </div>
     </div>
   );
 }
