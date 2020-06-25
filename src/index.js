@@ -8,7 +8,7 @@ import { createLogger } from "redux-logger"
 import { createStore, applyMiddleware, compose } from "redux";
 import reducer from './reducer'
 import DevTools from './components/DevTools'
-import { transitions, positions, Provider as AlertProvider } from "react-alert";
+import { transitions, positions, Provider as AlertProvider, types } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 
 const logger = createLogger()
@@ -27,6 +27,7 @@ const options = {
   timeout: 5000,
   offset: "30px",
   transition: transitions.SCALE,
+  type: types.SUCCESS,
 };
 
 ReactDOM.render(
