@@ -5,10 +5,7 @@ import WizardHeader from "./wizardHeader";
 import DrugsMaster from "./drugsMaster";
 import HowMaster from "./HowMaster";
 import SelectDateDaypart from "./selectDateDaypart";
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { show } from 'redux-modal'
-import AntdModal from './AntdModal'
+import { useAlert } from "react-alert";
 
 const style = (theme) => ({
   root: {
@@ -40,9 +37,7 @@ const Content = ({ classes }) => {
   const nandleNext = () => setActiveStep(activeStep + 1);
   const nandlePrev = () => setActiveStep(activeStep - 1);
   const tabs = ["Drug", "dose", "how"];
-  const handleOpen = name => {
-    this.props.show(name, { message: `On est content ?` })
-  };
+  const alert = useAlert();
   return (
     <Paper style={{}} elevation={1} className={classes.root}>
       <Typography
@@ -105,11 +100,12 @@ const Content = ({ classes }) => {
               color="primary"
               className={classes.navigation}
               variant="contained"
-              type="primary" onClick={handleOpen('antd')}
+              onClick={() => {
+                alert.show("Prescription validée")
+              }}
               >
                 Submit
               </Button>
-              <AntdModal />
             </Grid>
           )}
         </Grid>
@@ -117,7 +113,4 @@ const Content = ({ classes }) => {
     </Paper>
   );
 };
-export default withStyles(style)(Content); connect(
-  null,
-  dispatch => bindActionCreators({ show }, dispatch)
-);
+export default withStyles(style)(Content);
