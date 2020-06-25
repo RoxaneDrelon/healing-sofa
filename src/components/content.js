@@ -6,6 +6,8 @@ import DrugsMaster from "./drugsMaster";
 import HowMaster from "./HowMaster";
 import SelectDateDaypart from "./selectDateDaypart";
 
+import { useDispatch } from "react-redux";
+
 const style = (theme) => ({
   root: {
     border: `8px solid ${theme.palette.common.white}`,
@@ -30,12 +32,17 @@ const style = (theme) => ({
     boxShadow: theme.shadows[5],
   },
 });
-const Content = ({ classes }) => {
+
+const Content = ({ classes, event }) => {
   const [activeStep, setActiveStep] = useState(0);
   const handleChange = (index) => (e) => setActiveStep(index);
   const nandleNext = () => setActiveStep(activeStep + 1);
   const nandlePrev = () => setActiveStep(activeStep - 1);
   const tabs = ["Drug", "dose", "how"];
+  const dispatch = useDispatch();
+
+  const onClick1 = (event) => dispatch({ type: "ADD_DRUG_NAME", name: "test" });
+
   return (
     <Paper style={{}} elevation={1} className={classes.root}>
       <Typography
@@ -49,6 +56,7 @@ const Content = ({ classes }) => {
       <Typography gutterBottom>
         let's not forget about your medication !
       </Typography>
+
       <WizardHeader
         tabs={tabs}
         activeStep={activeStep}
@@ -86,7 +94,9 @@ const Content = ({ classes }) => {
                 color="primary"
                 className={classes.navigation}
                 variant="contained"
-                onClick={nandleNext}
+                onClick={() => {
+                  nandleNext();
+                }}
               >
                 Next
               </Button>

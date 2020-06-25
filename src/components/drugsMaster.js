@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { withStyles, Grid, Typography, TextField } from "@material-ui/core";
 
 import classNames from "classnames";
+import { useDispatch } from "react-redux";
+
 const masters = [
   <TextField hintText="Drug's name" floatingLabelText="Drug's name" />,
 ];
@@ -55,6 +57,8 @@ const style = (theme) => {
 const DrugsMaster = ({ classes }) => {
   const [checked, setChecked] = useState(-1);
   const handleChecked = (i) => (e) => setChecked(i);
+  const [input, setInput] = useState("");
+  const dispatch = useDispatch();
 
   const itemOuterClass = (i) =>
     classNames({
@@ -85,6 +89,11 @@ const DrugsMaster = ({ classes }) => {
           floatingLabelText="Drug's name"
           label="enter the drug's name"
           variant="filled"
+          value={input}
+          onInput={(e) => {
+            setInput(e.target.value);
+            dispatch({ type: "ADD_DRUG_NAME", name: input });
+          }}
         />
       </Grid>
       <input

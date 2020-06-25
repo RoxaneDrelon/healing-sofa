@@ -9,6 +9,7 @@ import {
   Radio,
 } from "@material-ui/core";
 import { calendar, clock } from "./iconPaths";
+import { useDispatch } from "react-redux";
 
 const dayparts = ["morning", "noon", "evening", "nomatter"];
 
@@ -41,6 +42,8 @@ function SelectDateDaypart({ classes }) {
   const [selectedDate, handleDateChange] = useState(new Date());
   const [selectedDaypart, setDaypart] = useState("nomatter");
   const handleDaypartChange = (e) => setDaypart(e.target.value);
+  const [input, setInput] = useState("");
+  const dispatch = useDispatch();
 
   return (
     <Grid
@@ -77,6 +80,10 @@ function SelectDateDaypart({ classes }) {
               labelPlacement="bottom"
               checked={selectedDaypart === part}
               disableGutters
+              onInput={(e) => {
+                setInput(e.target.value);
+                dispatch({ type: "ADD_TIME_OF_THE_DAY", time: e.target.value });
+              }}
             />
           ))}
         </RadioGroup>
@@ -99,7 +106,12 @@ function SelectDateDaypart({ classes }) {
               value={selectedDate}
               disablePast
               autoOk
-              onChange={handleDateChange}
+              onChange={() =>
+                dispatch({
+                  type: "ADD_START_DAY",
+                  dateStart: selectedDate,
+                })
+              }
               name="date"
               fullWidth
               variant="filled"
@@ -124,7 +136,12 @@ function SelectDateDaypart({ classes }) {
               value={selectedDate}
               disablePast
               autoOk
-              onChange={handleDateChange}
+              onChange={() =>
+                dispatch({
+                  type: "ADD_END_DAY",
+                  dateStart: selectedDate,
+                })
+              }
               name="date"
               fullWidth
               variant="filled"

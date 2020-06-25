@@ -1,13 +1,43 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { createStore, combineReducers } from "redux";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+import drugNameReducer from "./reducers/drugNameReducer";
+import drugTimeReducer from "./reducers/drugTimeReducer";
+import drugHowReducer from "./reducers/drugHowReducer";
+import drugQuantityReducer from "./reducers/drugQuantityReducer";
+
+const rootReducer = combineReducers({
+  drugName: drugNameReducer,
+  drugTime: drugTimeReducer,
+  how: drugHowReducer,
+  quantity: drugQuantityReducer,
+});
+
+const initialState = {
+  counter: { count: 0 },
+  drugName: { name: "" },
+  drugTime: { time: "", dateStart: "", dateEnd: "" },
+  how: { text: "" },
+  quantity: { quantity1: 0, quantity2: 0, quantity3: 0 },
+};
+
+const store = createStore(
+  rootReducer,
+  initialState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById("root")
 );
 
