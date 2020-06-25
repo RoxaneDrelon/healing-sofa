@@ -89,7 +89,6 @@ const DrugsMaster = ({ classes }) => {
           floatingLabelText="Drug's name"
           label="enter the drug's name"
           variant="filled"
-          value={input}
           onInput={(e) => {
             setInput(e.target.value);
             dispatch({ type: "ADD_DRUG_NAME", name: input });

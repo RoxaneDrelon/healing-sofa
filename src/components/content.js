@@ -5,8 +5,7 @@ import WizardHeader from "./wizardHeader";
 import DrugsMaster from "./drugsMaster";
 import HowMaster from "./HowMaster";
 import SelectDateDaypart from "./selectDateDaypart";
-
-import { useDispatch } from "react-redux";
+import { useStore, useDispatch } from "react-redux";
 
 const style = (theme) => ({
   root: {
@@ -40,6 +39,7 @@ const Content = ({ classes, event }) => {
   const nandlePrev = () => setActiveStep(activeStep - 1);
   const tabs = ["Drug", "dose", "how"];
   const dispatch = useDispatch();
+  const store = useStore();
 
   const onClick1 = (event) => dispatch({ type: "ADD_DRUG_NAME", name: "test" });
 
@@ -108,6 +108,9 @@ const Content = ({ classes, event }) => {
                 color="primary"
                 className={classes.navigation}
                 variant="contained"
+                onClick={() => {
+                  console.log(store.getState());
+                }}
               >
                 Submit
               </Button>

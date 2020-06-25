@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { withStyles, FormControlLabel, Grid, Switch } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import {
+  withStyles,
+  FormControlLabel,
+  Grid,
+  Switch,
+  TextField,
+} from "@material-ui/core";
 import { curl, straight, color, haircut, shampoo } from "./iconPaths";
 
 const services = [
@@ -47,6 +54,8 @@ const HowMaster = ({ classes }) => {
   const [serviceSelected, setServiceSelected] = useState(getInitialState());
   const handleChange = (name) => (e) =>
     setServiceSelected({ ...serviceSelected, [name]: e.target.checked });
+  const [input, setInput] = useState("");
+  const dispatch = useDispatch();
 
   const textSelected = Object.keys(serviceSelected)
     .filter((key) => serviceSelected[key])

@@ -39,7 +39,9 @@ const styles = (theme) => {
   };
 };
 function SelectDateDaypart({ classes }) {
-  const [selectedDate, handleDateChange] = useState(new Date());
+  const [selectedStartDate, handleStartDateChange] = useState(new Date());
+  const [selectedEndDate, handleEndDateChange] = useState(new Date());
+
   const [selectedDaypart, setDaypart] = useState("nomatter");
   const handleDaypartChange = (e) => setDaypart(e.target.value);
   const [input, setInput] = useState("");
@@ -103,15 +105,16 @@ function SelectDateDaypart({ classes }) {
           <div className={classes.picker}>
             <DatePicker
               inputProps={{ id: "date" }}
-              value={selectedDate}
+              value={selectedStartDate}
               disablePast
               autoOk
-              onChange={() =>
+              onChange={(value) => {
+                handleStartDateChange(value.toISOString().slice(0, 10));
                 dispatch({
                   type: "ADD_START_DAY",
-                  dateStart: selectedDate,
-                })
-              }
+                  date: selectedStartDate,
+                });
+              }}
               name="date"
               fullWidth
               variant="filled"
@@ -133,15 +136,16 @@ function SelectDateDaypart({ classes }) {
           <div className={classes.picker}>
             <DatePicker
               inputProps={{ id: "date" }}
-              value={selectedDate}
+              value={selectedEndDate}
               disablePast
               autoOk
-              onChange={() =>
+              onChange={(value) => {
+                handleEndDateChange(value.toISOString().slice(0, 10));
                 dispatch({
                   type: "ADD_END_DAY",
-                  dateStart: selectedDate,
-                })
-              }
+                  date: selectedEndDate,
+                });
+              }}
               name="date"
               fullWidth
               variant="filled"
