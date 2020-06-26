@@ -7,6 +7,7 @@ import HowMaster from "./HowMaster";
 import SelectDateDaypart from "./selectDateDaypart";
 import { useStore, useDispatch } from "react-redux";
 import axios from "axios";
+import { useAlert } from "react-alert";
 
 const style = (theme) => ({
   root: {
@@ -59,6 +60,7 @@ const Content = ({ classes, event }) => {
     console.log(res.data);
   }
 
+  const alert = useAlert();
   return (
     <Paper style={{}} elevation={1} className={classes.root}>
       <Typography
@@ -126,8 +128,8 @@ const Content = ({ classes, event }) => {
                 variant="contained"
                 onClick={() => {
                   makePostRequest();
-                  console.log(store.getState());
-                }}
+                alert.show("Prescription validée")
+              }}
               >
                 Submit
               </Button>

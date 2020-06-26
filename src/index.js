@@ -5,6 +5,32 @@ import { createStore, combineReducers } from "redux";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import {Provider} from "react-redux";
+import { createLogger } from "redux-logger"
+import { createStore, applyMiddleware, compose } from "redux";
+import reducer from './reducer'
+import DevTools from './components/DevTools'
+import { transitions, positions, Provider as AlertProvider, types } from "react-alert";
+import AlertTemplate from "react-alert-template-basic";
+
+const logger = createLogger()
+
+const store = createStore(
+  reducer,
+  {},
+  compose(
+    applyMiddleware(logger),
+    DevTools.instrument()
+  )
+)
+
+const options = {
+  position: positions.TOP_CENTER,
+  timeout: 5000,
+  offset: "30px",
+  transition: transitions.SCALE,
+  type: types.SUCCESS,
+};
 
 import drugNameReducer from "./reducers/drugNameReducer";
 import drugTimeReducer from "./reducers/drugTimeReducer";
@@ -33,11 +59,21 @@ const store = createStore(
 );
 
 ReactDOM.render(
+<<<<<<< HEAD
   <Provider store={store}>
     <React.StrictMode>
       <App />
     </React.StrictMode>
   </Provider>,
+=======
+  <React.StrictMode>
+    <Provider store={store}>
+      <AlertProvider template={AlertTemplate} {...options}>
+    <App />
+    </AlertProvider>
+    </Provider>
+  </React.StrictMode>,
+>>>>>>> modal
   document.getElementById("root")
 );
 
