@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SwipeableViews from "react-swipeable-views";
 import { Paper, Grid, Typography, withStyles, Button } from "@material-ui/core";
 import WizardHeader from "./wizardHeader";
@@ -6,6 +6,7 @@ import DrugsMaster from "./drugsMaster";
 import HowMaster from "./HowMaster";
 import SelectDateDaypart from "./selectDateDaypart";
 import { useStore, useDispatch } from "react-redux";
+import axios from "axios";
 
 const style = (theme) => ({
   root: {
@@ -41,7 +42,20 @@ const Content = ({ classes, event }) => {
   const dispatch = useDispatch();
   const store = useStore();
 
-  const onClick1 = (event) => dispatch({ type: "ADD_DRUG_NAME", name: "test" });
+  // axios
+
+  async function makePostRequest() {
+    let params = {
+      id: 6,
+      first_name: "Fred",
+      last_name: "Blair",
+      email: "freddyb34@gmail.com",
+    };
+
+    let res = await axios.post("http://localhost:7070/", params);
+
+    console.log(res.data);
+  }
 
   return (
     <Paper style={{}} elevation={1} className={classes.root}>
@@ -109,6 +123,7 @@ const Content = ({ classes, event }) => {
                 className={classes.navigation}
                 variant="contained"
                 onClick={() => {
+                  makePostRequest();
                   console.log(store.getState());
                 }}
               >
