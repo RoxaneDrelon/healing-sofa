@@ -8,11 +8,8 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-<<<<<<< HEAD
     "axios": "^0.19.2",
-=======
     "antd": "^4.3.5",
->>>>>>> modal
     "classnames": "^2.2.6",
     "cors": "^2.8.5",
     "date-fns": "^2.14.0",
@@ -22,12 +19,6 @@
     "react-alert": "^7.0.1",
     "react-alert-template-basic": "^1.0.0",
     "react-dom": "^16.13.1",
-<<<<<<< HEAD
-    "react-redux": "^7.2.0",
-    "react-scripts": "3.4.1",
-    "react-swipeable-views": "^0.13.9",
-    "redux": "^4.0.5"
-=======
     "react-modal": "^3.11.2",
     "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
@@ -38,7 +29,6 @@
     "redux-devtools-log-monitor": "^1.4.0",
     "redux-logger": "^3.0.6",
     "redux-modal": "^4.0.0"
->>>>>>> modal
   },
   "scripts": {
     "start": "react-scripts start",
