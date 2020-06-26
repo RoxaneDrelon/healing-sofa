@@ -36,6 +36,7 @@ const style = (theme) => ({
 
 const Content = ({ classes, event }) => {
   const [activeStep, setActiveStep] = useState(0);
+  const [drugs, setDrugs] = useState([]);
   const handleChange = (index) => (e) => setActiveStep(index);
   const nandleNext = () => setActiveStep(activeStep + 1);
   const nandlePrev = () => setActiveStep(activeStep - 1);
@@ -44,6 +45,9 @@ const Content = ({ classes, event }) => {
   const store = useStore();
 
   // axios
+
+
+  
 
   async function makePostRequest() {
     let params = {
@@ -57,10 +61,32 @@ const Content = ({ classes, event }) => {
 
     let res = await axios.post("http://localhost:7070/drugs?username=Isabelle", params);
 
-    console.log(res.data);
   }
 
+  async function fetchRequest() {
+    try {
+      const response = await axios.get("http://localhost:7070/drugs?username=Isabelle");
+      await setDrugs(response.data);
+      console.log(drugs);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+   };
+
   const alert = useAlert();
+
+  useEffect( () => { alert.show(
+    <ul>
+      {drugs.map((drug) => {
+        return(
+          <li>{drug.medecine}</li>
+        )
+      })}
+    </ul>) }, [alert, drugs] );
+
+    console.log(drugs); 
+
   return (
     <Paper style={{}} elevation={1} className={classes.root}>
       <Typography
@@ -128,7 +154,15 @@ const Content = ({ classes, event }) => {
                 variant="contained"
                 onClick={() => {
                   makePostRequest();
-                alert.show("Prescription validée")
+                  fetchRequest();
+                /*alert.show(
+                <ul>
+                  {drugs.map((drug) => {
+                    return(
+                      <li>{drug.medecine}</li>
+                    )
+                  })}
+                </ul>)*/
               }}
               >
                 Submit
