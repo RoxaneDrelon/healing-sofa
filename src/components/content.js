@@ -155,14 +155,6 @@ const Content = ({ classes, event }) => {
                 onClick={() => {
                   makePostRequest();
                   fetchRequest();
-                /*alert.show(
-                <ul>
-                  {drugs.map((drug) => {
-                    return(
-                      <li>{drug.medecine}</li>
-                    )
-                  })}
-                </ul>)*/
               }}
               >
                 Submit
