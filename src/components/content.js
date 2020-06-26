@@ -46,13 +46,15 @@ const Content = ({ classes, event }) => {
 
   async function makePostRequest() {
     let params = {
-      id: 6,
-      first_name: "Fred",
-      last_name: "Blair",
-      email: "freddyb34@gmail.com",
+      id: 0,
+      medecine: "Paracetamol",
+      administration_mode: "oral",
+      date_start: "2020-06-26",
+      date_end: "2020-06-30",
+      user_id: "3",
     };
 
-    let res = await axios.post("http://localhost:7070/", params);
+    let res = await axios.post("http://localhost:7070/drugs?username=Isabelle", params);
 
     console.log(res.data);
   }
